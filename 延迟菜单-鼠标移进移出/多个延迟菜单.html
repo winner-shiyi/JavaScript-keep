@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>延迟菜单</title>
+<link rel="stylesheet" type="text/css" href="miaov_style.css">
+<script>
+window.onload = function(){
+	function getByClass(oParent,sClass){
+		var aResult=[];
+		var aEle=oParent.getElementsByTagName('*');
+		var reg = new RegExp('\\b'+sClass+'\\b',i);
+		for(var i=0;i<aEle.length;i++){
+			if(reg.test(aEle[i].className)){
+				aResult.push(aEle[i]);
+			}
+		}
+		return aResult;
+	}
+	var oParent=document.getElementById('nav');
+	var aBtn=getByClass(oParent,'normal');
+	var aSpan=getByClass(document,'float_layer');
+	var timer = null;
+
+	for(var i=0;i<aBtn.length;i++){
+		aBtn[i].index = i;
+		aBtn[i].onmouseover=function(){
+			console.log(i);//i永远等于4
+			for(var j=0;j<aSpan.length;j++){//第二步
+				aSpan[j].style.display='none';
+			}
+			aSpan[this.index].style.display = 'block';//第一步
+
+			clearInterval(timer);//第六步，当我们从span里面移动到按钮里，要让span不消失
+		}
+		//第三步，鼠标离开按钮，span过1秒在消失，才能让鼠标可以移到span里面
+		aBtn[i].onmouseout=function(){
+			var that = this;
+			timer = setTimeout(function(){
+				//这里this指向window
+				aSpan[that.index].style.display='none';
+			},1000)
+		}
+		//第四步，鼠标移进span里面，一会儿之后span不能消失，清除定时器
+		aSpan[i].onmouseover = function(){
+			clearInterval(timer);
+		}
+		//第5步，鼠标从span里面移出的时候，span要过1秒钟在消失
+		aSpan[i].onmouseout = function(){
+			var that = this;
+			timer = setTimeout(function(){
+				//这里this指向window
+				that.style.display='none';
+			},1000)
+		}
+
+	}
+
+
+
+
+
+};
+</script>
+</head>
+
+<body>
+
+<div id="nav">
+    <div class="adorn1"></div>
+    <div class="adorn2"></div>
+    <ul>
+        <li>
+            <a class="normal" href="http://www.miaov.com"><span>首页</span></a>
+            <span class="float_layer w1 pos1">
+                <span class="arrows"></span>
+                <span class="decorate1"></span>
+                <span class="decorate2"></span>
+                <a href="http://www.miaov.com"><span>最近更新</span></a>
+                <a href="http://www.miaov.com"><span>活动</span></a>
+                <a href="http://www.miaov.com"><span>报名试听</span></a>
+                <a href="http://www.miaov.com"><span>学员反馈</span></a>
+            </span>
+        </li>
+        <li class="line">
+            <a class="normal" href="http://www.miaov.com"><span>关于我们</span></a>
+            <span class="float_layer w2 pos2">
+                <span class="arrows"></span>
+                <span class="decorate1"></span>
+                <span class="decorate2"></span>
+                <a href="http://www.miaov.com"><span>妙味讲师</span></a>
+                <a href="http://www.miaov.com"><span>培训方式</span></a>
+                <a href="http://www.miaov.com"><span>培训理念</span></a>
+                <a href="http://www.miaov.com"><span>联系我们</span></a>
+            </span>
+        </li>
+        <li class="line">
+            <a class="normal" href="http://www.miaov.com"><span>作品</span></a>
+            <span class="float_layer w3 pos3">
+                <span class="arrows"></span>
+                <span class="decorate1"></span>
+                <span class="decorate2"></span>
+                <a href="http://www.miaov.com"><span>般固</span></a>
+                <a href="http://www.miaov.com"><span>MATRIX</span></a>
+                <a href="http://www.miaov.com"><span>留学e网</span></a>
+                <a href="http://www.miaov.com"><span>ECMall</span></a>
+            </span>
+        </li>
+        <li class="line">
+            <a class="normal" href="http://www.miaov.com"><span>博客</span></a>
+            <span class="float_layer w4 pos4">
+                <span class="arrows"></span>
+                <span class="decorate1"></span>
+                <span class="decorate2"></span>
+                <a href="http://www.miaov.com"><span>JS教程</span></a>
+                <a href="http://www.miaov.com"><span>弹出层效果</span></a>
+                <a href="http://www.miaov.com"><span>3D球面标签云</span></a>
+                <a href="http://www.miaov.com"><span>计算器</span></a>
+            </span>
+        </li>
+    </ul>
+	<p><a href="http://www.miaov.com">>>更多</a></p>
+</div>
+
+</body>
+</html>

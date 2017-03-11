@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo</title>
+</head>
+<body>
+	<script>
+
+	function toDouble(iNum)
+	{
+		if(iNum<10)
+		{
+			return '0'+iNum;
+		}
+		else
+		{
+			return ''+iNum;
+		}
+	}
+
+	function getTimeArray()
+	{
+		var oDate=new Date();
+		var aNumber=[];
+		
+		var iYear=oDate.getYear();
+		var iMonth=oDate.getMonth();
+		var iDay=oDate.getDate();
+		var iHour=oDate.getHours();
+		var iMin=oDate.getMinutes();
+		var iSec=oDate.getSeconds();
+		var iWeek=(oDate.getDay()+6)%7;
+		
+		if(iYear<1900)
+		{
+			iYear+=1900;
+		}
+		
+		var str=''+(iYear)+toDouble(iMonth+1)+toDouble(iDay)+toDouble(iHour)+toDouble(iMin)+toDouble(iSec)+iWeek;
+		var aChar=str.split('');
+
+		console.log(aChar);
+		//["2", "0", "1", "7", "0", "3", "1", "9", "1", "8", "2", "0", "3", "7", "6"]
+		
+		for(i=0;i<aChar.length;i++)
+		{
+			aNumber[i]=parseInt(aChar[i]);
+		}
+		console.log(aNumber);
+		//[2, 0, 1, 7, 0, 3, 1, 9, 1, 8, 2, 0, 3, 7, 6]
+		return aNumber;
+	}
+	getTimeArray();
+	</script>
+</body>
+</html>

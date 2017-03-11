@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数码时钟</title>
+	<style>
+		*{padding:0;margin:0;}
+		body{
+			background: url(./images/bg.png) repeat top center;
+			color:white;
+			font-size:30px;
+		}
+		#div1{
+			width:300px;
+			height: 40px;
+			border:1px solid #fff;
+			margin:50px auto;
+		}
+		#div1 img{
+			width:25px;
+			height: 36px;
+			position:relative;
+		}
+		#div1 span{
+			vertical-align:6px;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var aImg = document.getElementsByTagName('img');
+			var oDate = new Date();
+			var prevStr,nextStr;
+			var arr = [];
+			var timer = null;
+
+			prevStr = toZero(oDate.getHours())+toZero(oDate.getMinutes())+toZero(oDate.getSeconds());
+
+			//console.log(prevStr);
+			for(var i=0,len=aImg.length;i<len;i++){
+				aImg[i].src = './images/'+ prevStr.charAt(i)+'.png';
+			}
+
+			setInterval(change,1000);
+
+			function change(){
+				var oDate2 = new Date();
+				nextStr = toZero(oDate2.getHours())+toZero(oDate2.getMinutes())+toZero(oDate2.getSeconds());
+					/*console.log(prevStr);
+					console.log(nextStr);*/
+					toCom(prevStr,nextStr);
+					prevStr = nextStr;
+
+			}
+			function toCom(str1,str2){
+				arr = [];
+				for (var i = 0; i < str1.length; i++) {
+					if(str1.charAt(i)!=str2.charAt(i)){
+						arr.push(i);
+					}
+				};
+				startMove();
+			}
+
+			function startMove(){
+				var speed = -4;
+				timer = setInterval(function(){
+					for (var i = 0; i < arr.length; i++) {
+						if(aImg[arr[i]].offsetHeight == 0){
+							speed = 4;
+							aImg[arr[i]].src = './images/'+ nextStr.charAt(arr[i])+'.png';
+						}
+						aImg[arr[i]].style.height = aImg[arr[i]].offsetHeight+ speed +'px';
+						aImg[arr[i]].style.top = (aImg[arr[i]].offsetHeight/2 -18)+'px';
+
+						if(aImg[arr[i]].offsetHeight == 36){
+							clearInterval(timer);
+						}
+					};
+				},20)
+			}
+
+			function toZero(num){
+				if(num<10){
+					return '0'+ num;
+				}else{
+					return ''+num;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="div1">
+		<img src="./images/0.png" alt="">
+		<img src="./images/1.png" alt="">
+		<span>:</span>
+		<img src="./images/2.png" alt="">
+		<img src="./images/3.png" alt="">
+		<span>:</span>
+		<img src="./images/4.png" alt="">
+		<img src="./images/5.png" alt="">
+	</div>
+</body>
+</html>
