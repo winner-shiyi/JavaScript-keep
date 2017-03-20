@@ -2,53 +2,56 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title>无缝切换</title>
 <style>
 *{ margin:0; padding:0;}
 li{ list-style:none;}
-#div1{ width:350px; height:60px; border:1px #000000 solid; position:relative; margin:0 auto; overflow:hidden;}
+#div1{ width:350px; height:60px; border:1px #000000 solid; position:relative; margin:0 auto;/*  overflow:hidden; */}
 #div1 ul{ position:absolute; left:0;}
 #div1 ul li{ width:80px; height:60px; margin-right:10px; float:left;}
 </style>
 <script type="text/javascript" src="move.js"></script>
 <script>
 window.onload = function(){
-	var oInput = document.getElementById('input1');
-	var oUl = document.getElementById('ul1');
-	var aLi = oUl.getElementsByTagName('li');
-	
-	var oneSize = aLi[0].offsetWidth + 10;
-	var iNum = 4;
-	var bBtn = true;
-	
+	var btn = document.getElementById('input1');
+	var ul = document.getElementById('ul1');
+	var lis = document.getElementsByTagName('li');
+
+	var size = lis[0].offsetWidth + 10;
+
 	function getWidth(){
-		oUl.style.width = aLi.length * oneSize + 'px';
+		ul.style.width = size*lis.length+'px';
 	}
 	getWidth();
-	
-	oInput.onclick = function(){
-		
-		if(bBtn){
-			bBtn = false;
-			for(var i=0;i<iNum;i++){
-				var oLi = aLi[i].cloneNode(true);
-				oUl.appendChild(oLi);
+
+	var num = 4;
+	var flag = true;
+	btn.onclick = function(){
+		if(flag){
+			flag = false;
+			for(var i=0;i<num;i++){
+				var oLi = lis[i].cloneNode(true);
+				ul.appendChild(oLi);
 				getWidth();
 			}
 			
-			startMove(oUl,{left : - iNum * oneSize},function(){
-			
-				for(var i=0;i<iNum;i++){
-					oUl.removeChild(aLi[0]);
-					oUl.style.left = 0;
+			startMove(ul,{left:-size*num},function(){
+				for(var i=0;i<num;i++){
+					//这里移除的是lis[0]
+					ul.removeChild(lis[0]);
+					ul.style.left = 0;
 				}
-				
-				bBtn = true;
-			
+				//如果快速点击按钮的时候会造成运动函数中的回调函数还没有走完，就开始一直走复制节点，添加到ul中的步骤，所以设置一个开关，强制要整个运动完成
+				flag = true;
 			});
+
+
 		}
 
-	};
+		
+
+	}
+	
 	
 };
 </script>
