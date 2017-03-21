@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>查找、替换、删除</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			background: #131010;
+		}
+		p {
+			background: #fff;
+			width: 600px;
+			padding: 30px;
+			font-family: '微软雅黑';
+			font-size: 20px;
+			line-height: 36px;
+			border-radius: 3px;
+		}
+		#wrap {
+			width: 800px;
+			margin: 30px auto;
+			position: relative;
+		}
+		#buttons {
+			width: 100px;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+		#buttons a {
+			text-decoration: none;
+			margin-bottom: 5px;
+			color: #fff;
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			border-radius: 3px;
+			text-align: center;
+			font-weight: bold;
+			font-family: '微软雅黑';
+			font-size: 20px;
+			display: block;
+			background: #30b9d4;
+		}
+		#buttons a:hover {
+			background: #227311;
+		}
+		#buttons span{
+			display: none;
+		}
+		#buttons span a{
+			background: #227311;
+		}
+		#toolbox {
+			border: 10px solid #fff;
+			width: 620px;
+			padding: 10px;
+			background: #e3ebec;
+			font-size: 0;
+			display: none;
+			position: relative;
+			border-radius: 3px;
+		}
+		
+		#search, #replace {
+			border-top: 3px solid #30b9d4;
+			margin-top: 3px;
+			display: none;
+		}
+		.search #search{
+			display: block;
+		}
+		.search #replace{
+			display: none;
+		}
+		.search span:nth-of-type(1){
+			background: #30b9d4;
+			color: #fff;
+		}
+		
+		.replace #search{
+			display: none;
+		}
+		.replace #replace{
+			display: block;
+		}
+		.replace span:nth-of-type(2){
+			background: #30b9d4;
+			color: #fff;
+		}
+		
+		
+		
+		#toolbox span {
+			font-family: '微软雅黑';
+			font-size: 20px;
+			padding: 5px 20px;
+			cursor: pointer;
+			border-radius: 3px;
+		}
+		#search input[type="text"], #replace input[type="text"] {
+			margin: 20px 0px;
+			padding: 2px;
+			height: 24px;
+			width: 200px;
+			font-size: 24px;
+			margin-right: 10px;
+		}
+		#search input[type="button"], #replace input[type="button"] {
+			margin: 20px 0;
+			height: 30px;
+			width: 56px;
+			font-size: 20px;
+		}
+		#close {
+			font-size: 24px;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var show=document.getElementById("show");
+			var span=document.querySelector("#buttons span");
+			var as=document.querySelectorAll("#buttons span a");
+			var toolbox=document.getElementById("toolbox");
+			var spans=document.querySelectorAll("#toolbox span");
+			var close=document.getElementById("close");
+			var inputs=document.querySelectorAll("input");
+			var p=document.querySelector("p");
+			
+			var oldText=p.innerHTML;		//存一下最初p标签里的内容
+			
+			show.onclick=function(){
+				span.style.display='block';
+			};
+			
+			//右侧查找按钮
+			as[0].onclick=spans[0].onclick=function(){
+				span.style.display='none';
+				
+				toolbox.style.display='block';
+				toolbox.className='search';
+				
+				
+				inputs[0].value=inputs[2].value=inputs[3].value='';
+			};
+			
+			
+			//右侧替换按钮
+			as[1].onclick=spans[1].onclick=function(){
+				span.style.display='none';
+				
+				toolbox.style.display='block';
+				toolbox.className='replace';
+				
+				inputs[0].value=inputs[2].value=inputs[3].value='';
+				
+				
+				//点击的时候，如果页面里有标黄的内容，就找到它，把颜色去掉
+				var spans=document.querySelectorAll("p span");
+				
+				for(var i=0;i<spans.length;i++){
+					spans[i].style.background='';
+				}
+			};
+			
+			
+			//关闭按钮
+			close.onclick=function(){
+				toolbox.style.display='none';
+			};
+			
+			//下边查找按钮
+			inputs[1].onclick=function(){
+				var val=inputs[0].value;
+				//用户没有输入内容
+				if(!val){
+					//这个条件成立说明用户啥也没输
+					alert('请输入内容');
+					return;		//用户没有输入内容，那下面的代码就不要走了
+					/*
+					 * 只能放在函数内
+					 * 1、阻止函数继续执行
+					 * 2、返回函数的值
+					 */
+				}
+				
+				
+				//用户输入的内容没有找到 indexOf(要找的东西)
+				if(p.innerHTML.indexOf(val)==-1){
+					//这个条件成立，说明用户输入的内容没有在p标签的内容里找到，把就返回一个-1
+					alert('你输入的内容没找到');
+					return;
+				}
+				
+				
+				//以上条件如果都不满足的话，就会走下边的代码 。下边代码要做的事情就是标黄
+				//split		拆分字符串，拆成一个数组
+				//join		把数组连接成字符串
+				
+				p.innerHTML=oldText;
+				
+				var text=p.innerHTML.split(val);
+				//console.log(text);
+				
+				p.innerHTML=text.join('<span style="background:yellow;">'+val+'</span>');
+				
+				inputs[0].value='';		//点击后把内容清空
+				
+			};
+			
+			
+			
+			//下边替换按钮
+			inputs[4].onclick=function(){
+				var val1=inputs[2].value;
+				var val2=inputs[3].value;
+				
+				//用户没有输入内容
+				if(!val1){
+					alert('请输入要替换的内容');
+					return;
+				}
+				
+				//第一个框里有输入的内容，但是没找到
+				if(p.innerHTML.indexOf(val1)==-1){
+					alert('你输入的内容没有找到');
+					return;
+				}
+				
+				
+				//用户输入的内容找到了，但是没有给替换的内容，所以要弹出一个提示框，问用户是否删除
+				if(!val2){
+					//
+					var result=confirm('你确定要删除内容么');
+					
+					
+					//判断用户取消了
+					if(!result){
+						inputs[2].value='';
+						return;
+					}
+				}
+				
+				
+				//如果代码走到这里，说明用户输入的内容找到了，做一个替换的功能
+				//p.innerHTML=oldText;
+				
+				var text=p.innerHTML.split(val1);
+				//console.log(text);
+				
+				p.innerHTML=text.join('<span>'+val2+'</span>');
+				
+				inputs[2].value=inputs[3].value='';		//点击后把内容清空
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<p>JavaScript一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型。它的解释器被称为JavaScript引擎，为浏览器的一部分，广泛用于客户端的脚本语言，最早是在HTML（标准通用标记语言下的一个应用）网页上使用，用来给HTML网页增加动态功能</p>
+		<div id="buttons">
+			<a href="javascript:" id="show">展开</a>
+			<span>
+				<a href="javascript:">查找</a>
+				<a href="javascript:">替换</a>
+			</span>
+		</div>
+		<div id="toolbox">
+			<div id="close">×</div>
+			<span>查找</span>
+			<span>替换</span>
+			<div id="search">
+				<input type="text"><input type="button" value="查找">
+			</div>
+			<div id="replace">
+				<input type="text"><input type="text">
+				<input type="button" value="替换">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
