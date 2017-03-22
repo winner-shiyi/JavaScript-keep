@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>文字搬运工</title>
+	<style>
+		html, body {
+			margin: 0;
+			padding: 0;
+			background: #131010;
+		}
+		#wrapper {
+			margin: 50px auto;
+			width: 800px;
+			background: #e3ebec;
+			overflow: hidden;
+			padding: 50px;
+			border-radius: 6px;
+		}
+		textarea {
+			background: #fff;
+			border: none;
+			width: 320px;
+			height: 220px;
+			float: left;
+			padding: 10px;
+			font-size: 18px;
+		}
+		#right {
+			width: 320px;
+			height: 220px;
+			background: #fff;
+			float: right;
+			padding: 10px;
+			overflow: hidden;
+			word-break: break-all;
+			word-wrap:break-word
+		}
+		#center {
+			float: left;
+			width: 120px;
+			text-align: center;
+		}
+		#center a {
+			display: block;
+			color: #fff;
+			background: #30b9d4;
+			text-decoration: none;
+			padding: 10px;
+			margin: 0 5px;
+			font-family: '微软雅黑';
+			border-radius: 3px;
+		}
+		#center p {
+			font-size: 20px;
+			font-family: '微软雅黑';
+		}
+		#center ul {
+			margin: 0;
+			padding: 0;
+			font-size: 0;
+			opacity: 0;
+		}
+		li {
+			list-style: none;
+			display: inline-block;
+			width: 8px;
+			height: 10px;
+			background: #E7A521;
+			margin: 2px;
+		}
+	</style>
+	<script>
+		window.onload=function(){
+			var btn=document.querySelector("#center a");
+			var left=document.getElementById("left");
+			var p=document.querySelector("#center p");
+			var progress=document.getElementById("progress");
+			var right=document.getElementById("right");
+			var lis=document.querySelectorAll("li");
+			
+			
+			btn.on=true;		//自定义属性，用来确定按钮能否再次点击，当它的值为true的时候，按钮可以点击。为false的话就不能点击了
+			btn.onclick=function(){
+				/*
+				 * 1、判断有没输入内容，没输入的话给他一个提示
+				 * 2、按钮变灰了，不能点了
+				 * 3、文字数量要改变
+				 * 4、进度条要显示出来
+				 * 5、左边的文字移动到右边
+				 */
+				
+				
+				var ln=0;		//上一次红色块的下标值
+				var n=0;		//当前红色块的下标值
+				
+				//1、判断有没输入内容，没输入的话给他一个提示
+				var val=left.value;
+				
+				if(!val){
+					alert('请输入内容');
+					return;
+				}
+				
+				console.log(btn.on);
+				
+				//点击的时候要确定以下的代码要不要走
+				if(!btn.on){
+					//如果这个条件成立了说明它的值为false，表示不可点
+					return;
+				}
+				
+				
+				//点击的时候把右侧的内容先清空一下
+				right.innerHTML='';
+				
+				
+				//2、按钮变灰了，不能点了
+				btn.style.opacity='0.5';
+				
+				//3、文字数量要改变
+				p.innerHTML='<span id="current">0</span>/<span id="all">'+val.length+'</span>';
+				
+				
+				//4、进度条要显示出来
+				progress.style.opacity=1;
+				
+				
+				//5、左边的文字移动到右边
+				var timer=setInterval(function(){
+					btn.on=false;	//运动在走的时候，按钮不能点击，所以在定时器跑的时候把它的值设为false
+					//这两个位置不能换，如果换的话，那右边会少一个字符
+					right.innerHTML+=left.value.substring(0,1);	//把左边的内容的第一个字符截掉，放到右边
+					left.value=left.value.substring(1);			//从第1个下标的字符一直截到末尾
+					
+					//修改左边的数字
+					p.innerHTML='<span id="current">'+right.innerHTML.length+'</span>/<span id="all">'+val.length+'</span>';
+					
+					
+					
+					//进度条功能	0
+					lis[ln].style.background='#E7A521';		//一上来先把上一个红色块还原成原来的颜色
+					ln=n;			//ln已经用完了，然后要更新他，让他的值与n的值相等
+					
+					
+					lis[n].style.background='red';			//让当前那个变成红色
+					n++;						//往后走，就要累加
+					n=n%lis.length;				//为了能够让n的值从0-7之间循环
+					//console.log(n);
+					
+					/*
+					 * lis.length=8;
+					 * n	1	2	3	4	5	6	7	8	9	10	11	12	13...
+					 * %	1	2	3	4	5	6	7	0	1	2	3	4	5	6	7	0
+					 */
+					
+					
+					//清除定时器
+					if(!left.value){
+						clearInterval(timer);
+						
+						btn.on=true;			//运动结束了，就让它的值为true，表示按钮可以再次点击
+						
+						btn.style.opacity=1;					//让按钮的透明度还原为1
+						lis[ln].style.background='#E7A521';		//把最后一个红色块还原为原来的颜色
+						progress.style.opacity=0;				//把进度条隐藏 
+					}
+					
+				},100);
+				
+			};
+		}
+		
+		
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<textarea id="left"></textarea>
+		<div id="center">
+			<a href="javascript:">文字右移&nbsp;→</a>
+			<p><span id="current">0</span>/<span id="all">0</span></p>
+			<ul id="progress">
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div id="right"></div>
+	</div>
+</body>
+</html>
