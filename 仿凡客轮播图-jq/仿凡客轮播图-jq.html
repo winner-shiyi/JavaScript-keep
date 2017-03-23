@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+	<link rel="stylesheet" href="./index.css">
+	<script src="../jquery-3.2.0.slim.min.js"></script>
+	<script>
+		$(function(){
+			var $fk = $('#fk');
+			var c = 0;
+			var $items = $fk.find('.slider li');
+			var $tabs = $fk.find('.tabs li')
+			function run(){
+				c++;
+				c =(c==5)?0:c;
+				$items.eq(c).addClass('cur').siblings().removeClass('cur');
+				$tabs.eq(c).addClass('cur').siblings().removeClass('cur');
+			}
+			setInterval(run,1000);
+		})
+	</script>
+</head>
+<body>
+	<div id="fk">
+		<ul class="slider">
+			<li class="cur"><a href=""><img src="http://i3.vanclimg.com/cms/20170322/0322-535vt.jpg" alt=""></a></li>
+			<li><a href=""><img src="http://i5.vanclimg.com/cms/20170321/vty-535.jpg" alt=""></a></li>
+			<li><a href=""><img src="http://i2.vanclimg.com/cms/20170314/dh.jpg" alt=""></a></li>
+			<li><a href=""><img src="http://i5.vanclimg.com/cms/20170322/535-0323.jpg" alt=""></a></li>
+			<li><a href=""><img src="http://i4.vanclimg.com/cms/20170222/fbxsj.jpg" alt=""></a></li>	
+		</ul>
+		<a href="" class="prev"></a>
+		<a href="" class="next"></a>
+		<ul class="tabs">
+			<li class="cur"><a href=""></a></li>
+			<li><a href=""></a></li>
+			<li><a href=""></a></li>
+			<li><a href=""></a></li>
+			<li><a href=""></a></li>
+		</ul>
+	</div>
+	<div class="main">主体内容</div>
+</body>
+</html>
