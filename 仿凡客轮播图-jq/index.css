@@ -16,12 +16,12 @@ li{list-style-type:none;}
 	position: absolute;
 	top:0;
 	left:0;
-	opacity:0;
 	z-index:1;
-	transition:opacity 500ms ease-in-out;
+	/* opacity:1;
+	z-index:1;
+	transition:opacity 500ms ease-in-out; */
 }
 .slider li.cur{
-	opacity: 1;
 	z-index:2;
 }
 .tabs{

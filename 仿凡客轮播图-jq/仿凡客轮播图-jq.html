@@ -4,20 +4,53 @@
 	<meta charset="UTF-8">
 	<title>index</title>
 	<link rel="stylesheet" href="./index.css">
-	<script src="../jquery-3.2.0.slim.min.js"></script>
+	<script src="../jquery-3.2.0.min.js"></script>
 	<script>
 		$(function(){
 			var $fk = $('#fk');
 			var c = 0;
 			var $items = $fk.find('.slider li');
-			var $tabs = $fk.find('.tabs li')
+			var $tabs = $fk.find('.tabs li');
+            var timer = null;
+            var tt = null;
+            $tabs.eq(c).addClass('cur');
+            //运动展示方法
 			function run(){
-				c++;
-				c =(c==5)?0:c;
-				$items.eq(c).addClass('cur').siblings().removeClass('cur');
-				$tabs.eq(c).addClass('cur').siblings().removeClass('cur');
+
+				// $items.eq(c).addClass('cur').siblings().removeClass('cur');
+				// $tabs.eq(c).addClass('cur').siblings().removeClass('cur');
+                $items.eq(c).fadeIn(500).siblings().fadeOut(500);
+                $tabs.eq(c).addClass('cur').siblings().removeClass('cur');
+                c++;
+                c =(c==5)?0:c;
 			}
-			setInterval(run,1000);
+            //设置定时器，自动轮播
+			timer = setInterval(run,2000);
+
+            $items.mouseenter(function(){
+                clearInterval(timer);
+            });
+            $items.mouseleave(function(){
+                timer = setInterval(run,2000);
+            });
+            $tabs.mouseenter(function(){
+                var $this = $(this);
+                clearInterval(timer);//先清理定时器
+                //快速滑动切换的时候，让它缓一会儿再揍
+                tt = setTimeout(function(){
+
+                    c = $this.index();//$(this)写在定时器里，指向的是定时器，不是jq对象，所以前面要保存
+                    $items.eq(c).stop().fadeIn(500).siblings().stop().fadeOut(500);
+                    $tabs.eq(c).addClass('cur').siblings().removeClass('cur');
+                },200)
+
+            });
+            $tabs.mouseleave(function(){
+                clearTimeout(tt);
+                timer = setInterval(run,2000);
+            });
+
+
 		})
 	</script>
 </head>
@@ -28,7 +61,7 @@
 			<li><a href=""><img src="http://i5.vanclimg.com/cms/20170321/vty-535.jpg" alt=""></a></li>
 			<li><a href=""><img src="http://i2.vanclimg.com/cms/20170314/dh.jpg" alt=""></a></li>
 			<li><a href=""><img src="http://i5.vanclimg.com/cms/20170322/535-0323.jpg" alt=""></a></li>
-			<li><a href=""><img src="http://i4.vanclimg.com/cms/20170222/fbxsj.jpg" alt=""></a></li>	
+			<li><a href=""><img src="http://i4.vanclimg.com/cms/20170222/fbxsj.jpg" alt=""></a></li>
 		</ul>
 		<a href="" class="prev"></a>
 		<a href="" class="next"></a>
