@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/index.css" />
+		<script>
+			window.onload=function(){
+				var title=document.querySelector("#banner .text");
+				
+				title.style.width='400px';
+				title.style.opacity=1;
+				
+				var num=0;	//这个表示属性运动完成的数量
+				/*
+				 * transitionend会在每一个属性都完成后调用 
+				 */
+				title.addEventListener('transitionend',function(){
+					num++;
+					if(num==2){		//让里面的代码只执行一次
+						/*var html=document.querySelector("html");
+						html.style.animation='0.3s shake';*/
+					}
+					
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<nav class="clear">
+			<div class="navLogo">
+				<h1>
+					<a href="http://www.apeclass.com/" target="_blank"><img src="img/logo_01.png" alt="海棠学院web前端学习新体验"/></a>
+				</h1>
+			</div>
+			<ul>
+				<li><a href="http://www.apeclass.com/" target="_blank">首页 </a></li>      
+				<li><a href="javascript:;">教学亮点 </a></li>      
+				<li><a href="javascript:;">课程大纲 </a></li>      
+				<li><a href="javascript:;">常见问题 </a></li>
+			</ul>
+		</nav>
+		<section id="banner">
+			<div class="center">
+				<div class="title">
+					<p>web 前端学习新体验</p>
+					<div class="text">
+						<div></div>
+						<div></div>
+					</div>
+					<p>预付 99 抵扣 999 (仅限前50名)</p>
+				</div>
+				<div class="btn">
+						<a href="#">案例</a>
+						<a href="#">深入</a>
+					</div>
+			</div>
+		</section>
+		<section id="second">
+			<div class="header" id="anchor1">
+				<h2>海棠前端，精品课程</h2>
+				<div class="line"></div>
+				<h3>六大教学亮点，让学习不再难</h3>
+			</div>
+			<div class="circle">
+				<div>
+					<p>一线工程师</p>
+					<p>多年实战开发</p>
+					<p>作业讲解点评</p>
+					<p><strong>百度名师亲自授课</strong></p>
+				</div>
+				<div>
+					<p><strong>在线学习</strong></p>
+					<p>精品录播</p>
+					<p>优质直播</p>
+					<p>教学管理</p>
+					<p>技术辅导</p>
+				</div>
+				<div>
+					<p><strong>精品小班授课</strong></p>
+					<p>名师1vs1指导</p>
+					<p>拒绝百人大班</p>
+					<p>问题快速响应</p>
+				</div>
+				<div>
+					<p><strong>行业底价学费</strong></p>
+					<p>实体班1/3学费</p>
+					<p>0风险试学</p>
+					<p>满意后再付费</p>
+				</div>
+				<div>
+					<p><strong>免费重修</strong></p>
+					<p>实战案例讲解</p>
+					<p>自由把控时间</p>
+					<p>0代价免费重修</p>
+				</div>
+				<div>
+					<p><strong>不满意退费</strong></p>
+					<p>入学合同保障</p>
+					<p>无须学费担忧</p>
+					<p>品质信心承诺</p>
+					<p>退费畅通便捷</p>
+				</div>
+				<div class="number">
+					<div>1</div>
+					<div>2</div>
+					<div>3</div>
+					<div>4</div>
+					<div>5</div>
+					<div>6</div>
+				</div>
+			</div>
+		</section>
+		<section id="third">
+			<div class="header">
+				<h2>四大亮点在线学</h2>
+				<div class="line"></div>
+				<h3>一步一步成为 web 大前端高手</h3>
+			</div>
+			<div class="text">
+				<dl>
+					<dt>①精品录播</dt>
+					<dd>
+						根据课程难度，一周1~3个章节的速度，学员须在一周内完成规定的章节学习。课程后会有作业给到学员
+					</dd>
+				</dl>
+				<dl>
+					<dt>②在线直播</dt>
+					<dd>
+						每周不少于两次直播课程，答疑解惑，辅导作业，带领项目。
+					</dd>
+				</dl>
+				<dl>
+					<dt>③教学管理</dt>
+					<dd>
+						助教老师会监督管理学员学习状况，包括作业是否上交，直播课是否参加等。
+					</dd>
+				</dl>
+				<dl>
+					<dt>④技术辅导</dt>
+					<dd>
+						学习期间，任何技术问题都可以询问讲师，包括内部学习QQ群、学习平台、微信等。讲师还会不定期给大家提供额外的技术案例分享。
+					</dd>
+				</dl>
+				<div class="xLine"></div>
+				<div class="yLine"></div>
+			</div>
+		</section>
+		<section id="photo">
+			<ul class="clear">
+				<li>
+					<img src="img/photo_01.jpg"/>
+					<div>
+						<dl>
+							<dt>认识讲师</dt>
+							<dd>
+								<p>你看到的，你所认同的，在这里都将被实现。学习艰辛，我们一路同行</p>
+							</dd>
+						</dl>
+						<a href="javascript:;"></a>
+					</div>
+				</li>
+				<li>
+					<img src="img/photo_02.jpg"/>
+					<div>
+						<dl>
+							<dt>教学管理</dt>
+							<dd>
+								<p>或许看上去不会那么"友善"，甚至略微苛刻，我们相信您也期待一个新的学习体验。</p>
+							</dd>
+						</dl>
+						<a href="javascript:;"></a>
+					</div>
+				</li>
+				<li>
+					<img src="img/photo_03.jpg"/>
+					<div>
+						<dl>
+							<dt>学员反馈</dt>
+							<dd>
+								<p>没有慷慨且煽情的言语，甚至不连贯的语句也测证"剧本"的可信赖性。"简单可依赖"，不只是一句口号。</p>
+							</dd>
+						</dl>
+						<a href="javascript:;"></a>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<section id="fourth">
+			<div class="header" id="anchor2">
+				<h2>2016最新课程体系，干货满满</h2>
+				<div class="line"></div>
+				<h3>0基础入门到高级实战进阶</h3>
+			</div>
+			<div class="mainBg clear">
+				<div class="main">
+					<div class="left">
+						<div class="box">
+							<div class="clear">
+								<div class="order">01</div>
+								<div class="topLine"></div>
+							</div>
+							<div class="clear">
+								<p class="year">10月31日</p>
+								<dl>
+									<dt>前端如何入门</dt>
+									<dd>1、前端开发是什么</dd>
+									<dd>2、如何去搭建一个网页</dd>
+									<dd>3、标签的使用</dd>
+								</dl>
+							</div>
+						</div>
+						<div class="box">
+							<div class="clear">
+								<div class="order">03</div>
+								<div class="topLine"></div>
+							</div>
+							<div class="clear">
+								<p class="year"></p>
+								<dl>
+									<dt>移动端</dt>
+									<dd>1、移动端入门</dd>
+									<dd>2、移动端布局</dd>
+									<dd>3、less&响应式</dd>
+								</dl>
+							</div>
+						</div>
+						<div class="box">
+							<div class="clear">
+								<div class="order">05</div>
+								<div class="topLine"></div>
+							</div>
+							<div class="clear">
+								<p class="year"></p>
+								<dl>
+									<dt>JS初级</dt>
+									<dd>1、数据类型&流程控制</dd>
+									<dd>2、定时器&日期对象</dd>
+									<dd>3、字符串&数组</dd>
+								</dl>
+							</div>
+						</div>
+						<div class="box">
+							<div class="clear">
+								<div class="order">07</div>
+								<div class="topLine"></div>
+							</div>
+							<div class="clear">
+								<p class="year"></p>
+								<dl>
+									<dt>JS高级</dt>
+									<dd>1、正则表达式&面向对象</dd>
+									<dd>2、jQuery&Ajax</dd>
+									<dd>3、JQuery插件</dd>
+								</dl>
+							</div>
+						</div>
+					</div>
+					<div class="mCenter">
+						<div class="arc">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="arc">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="arc">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="arc">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="arc">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="arc">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="arc">
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+							<div></div>
+						</div>
+						<div class="arc">
+							<div></div>
+						</div>
+					</div>
+					<div class="right">
+						<div class="box">
+							<div class="clear">
+								<p class="year">10月31日</p>
+								<dl>
+									<dt>页面布局</dt>
+									<dd>1、定位&浮动</dd>
+									<dd>2、表格&表单</dd>
+									<dd>3、兼容性&整站开发</dd>
+								</dl>
+							</div>
+							<div class="clear">
+								<div class="order">02</div>
+								<div class="topLine"></div>
+							</div>
+						</div>
+						<div class="box">
+							<div class="clear">
+								<p class="year"></p>
+								<dl>
+									<dt>JS入门</dt>
+									<dd>1、JS基本语法</dd>
+									<dd>2、初识JS</dd>
+									<dd>3、属性操作</dd>
+								</dl>
+							</div>
+							<div class="clear">
+								<div class="order">04</div>
+								<div class="topLine"></div>
+							</div>
+						</div>
+						<div class="box">
+							<div class="clear">
+								<p class="year"></p>
+								<dl>
+									<dt>JS中级</dt>
+									<dd>1、DOM&表格表单的操作</dd>
+									<dd>2、BOM</dd>
+									<dd>3、事件类型&事件对象</dd>
+								</dl>
+							</div>
+							<div class="clear">
+								<div class="order">06</div>
+								<div class="topLine"></div>
+							</div>
+						</div>
+						<div class="box">
+							<div class="clear">
+								<p class="year"></p>
+								<dl>
+									<dt>JS全栈</dt>
+									<dd>1、EC6&移动端基础时间</dd>
+									<dd>2、nodeJS</dd>
+									<dd>3、Git&react</dd>
+								</dl>
+							</div>
+							<div class="clear">
+								<div class="order">08</div>
+								<div class="topLine"></div>
+							</div>
+						</div>
+					</div>
+					<div class="rightBtn">
+						<div><span>99元入学</span></div>
+						<div><span>开课一周后再决定是否继续学习</span></div>
+					</div>
+				</div>
+			</div>
+			<div class="yuyue">
+				<a href="#">预约体验</a>
+			</div>
+		</section>
+		<section id="fifth">
+			<div class="header">
+				<h2>入学流程</h2>
+				<div class="line"></div>
+				<h3>报名表 -> 预付款 -> 正式开课 -> 缴纳学费</h3>
+			</div>
+			<div class="fImg"></div>
+			<div class="fCenter">
+				<div>
+					<dl>
+						<dt>10月17日</dt>
+						<dd>
+							<p>填写报名表</p>
+							<p>确定学习意向</p>
+							<p>迎接新的挑战</p>
+						</dd>
+					</dl>
+					<span>①</span>
+				</div>
+				<div>
+					<span>②</span>
+					<dl>
+						<dt>10月17日</dt>
+						<dd>
+							<p>缴纳99元报名费</p>
+							<p>锁定学习坐席</p>
+							<p>并等待正式开课</p>
+						</dd>
+					</dl>
+				</div>
+				<div>
+					<span>③</span>
+					<dl>
+						<dt>10月31日</dt>
+						<dd>
+							<p>正式开课</p>
+							<p>开通学习权限</p>
+							<p>建立内部学习群</p>
+							<p>内部学员直播课</p>
+							<p>作业讲解答疑</p>
+							<p>技术1vs1指导</p>
+						</dd>
+					</dl>
+				</div>
+				<div>
+					<span>④</span>
+					<dl>
+						<dt>11月07日</dt>
+						<dd>
+							<p>决定是否继续学习</p>
+							<p>感到课程满意再付清学费</p>
+							<p>之前缴纳的99元可抵扣999元学费</p>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</section>
+		<section class="date">
+			<h4>开课倒计时</h4>
+			<div>
+				<span>0</span>
+				<span>0</span>
+				<span class="colon">天</span>
+				<span>0</span>
+				<span>0</span>
+				<span class="colon">时</span>
+				<span>0</span>
+				<span>0</span>
+				<span class="colon">分</span>
+				<span>0</span>
+				<span>0</span>
+				<span class="colon">秒</span>
+			</div>
+		</section>
+		<section class="problem">
+			<div class="header" id="anchor3">
+				<h2>常见问题</h2>
+				<div class="line"></div>
+				<h3>关于课程、关于费用、关于你想知道的</h3>
+			</div>
+			<dl>
+				<dt><span>01</span>课程周期是多长？</dt>
+				<dd>
+					全部课程学习下来需要4.5个月左右。
+				</dd>
+			</dl>
+			<dl>
+				<dt><span>02</span>授课方式是怎么样的？</dt>
+				<dd>
+					录播+直播+教学管理+技术辅导。
+				</dd>
+				<dd>播课程；根据课程难度，一周1~3个章节的速度，学员须在一周内完成规定的章节学习。课程后会有作业给到学员</dd>
+				<dd>直播课程；每周不少于两次直播课程，答疑解惑，辅导作业，带领项目。时间一般安排在周末</dd>
+				<dd>教学管理；助教老师会监督管理学员学习状况，包括作业是否上交，直播课是否参加等。</dd>
+				<dd>技术辅导：学习期间，任何技术问题都可以询问讲师，包括内部学习QQ群、学习平台、微信等。讲师还会不定期给大家提供额外的技术案例分享。</dd>
+			</dl>
+			<dl>
+				<dt><span>03</span>学习时间如何安排？</dt>
+				<dd>
+					录播课时间比较自由，您可以自行安排学习时间。在规定时间内完成规定的课程就好。期间有任何技术问题都可以向讲师提问
+				</dd>
+			</dl>
+			<dl>
+				<dt><span>04</span>直播课怎么安排？</dt>
+				<dd>
+					直播课一周不少于两次，讲师会带领大家写作业，答疑解惑。时间会安排在周末，单次直播再一个半小时左右。
+				</dd>
+			</dl>
+			<dl>
+				<dt><span>05</span>如果错过直播还可以回放吗？</dt>
+				<dd>
+					可以。
+				</dd>
+			</dl>
+			<dl>
+				<dt><span>06</span>我0基础可以学得会吗？</dt>
+				<dd>
+					可以。
+				</dd>
+				<dd>但是您做好了学习一项技能的准备了吗？如果你已经准备好了，那剩下的就交给我们。</dd>
+			</dl>
+			<dl>
+				<dt><span>07</span>我有基础可以从js开始学习吗？</dt>
+				<dd>
+					可以。
+				</dd>
+			</dl>
+			<dl>
+				<dt><span>08</span>我已经是前端工程师了，可以只学习后面的高级课程吗？</dt>
+				<dd>
+					暂不支持跳跃式学习。
+				</dd>
+			</dl>
+			<dl>
+				<dt><span>09</span>能不能不要你们的教学服务，只买你们的视频？</dt>
+				<dd>
+					不卖。
+				</dd>
+				<dd>买视频请出门左转去淘宝，1块钱100个G</dd>
+			</dl>
+			<dl>
+				<dt><span>10</span>学不会可以重读吗？</dt>
+				<dd>
+					可以。
+				</dd>
+			</dl>
+			<dl>
+				<dt><span>11</span>入学流程</dt>
+				<dd>
+					99元体验正课的所有教学服务，技术指导。感受不错后再付剩余学费。付款后，我们会给到您一份入学合同+书籍。合同会规定我们的课时、直播课、答疑等责任。书籍给您做工具书查阅使用。
+				</dd>
+			</dl>
+			<dl>
+				<dt><span>12</span>海棠陈老师帅不帅？</dt>
+				<dd>
+					帅。
+				</dd>
+			</dl>
+		</section>
+		<footer>
+			<div class="mts">课程内容版权均归<a href="http://www.apeclass.com/">北京海棠优学教育科技有限公司</a>所有<a href="http://www.miibeian.gov.cn/" target="_blank" style="padding-left: 50px;">ICP备16020780号-1</a>
+            </div>
+		</footer>
+		<div id="back">top</div>
+	</body>
+</html>
