@@ -16,27 +16,24 @@
             $tabs.eq(c).addClass('cur');
             //运动展示方法
 			function run(){
-
-				// $items.eq(c).addClass('cur').siblings().removeClass('cur');
-				// $tabs.eq(c).addClass('cur').siblings().removeClass('cur');
-                $items.eq(c).fadeIn(500).siblings().fadeOut(500);
+                $items.eq(c).stop().fadeIn(500).siblings().stop().fadeOut(500);
                 $tabs.eq(c).addClass('cur').siblings().removeClass('cur');
                 c++;
                 c =(c==5)?0:c;
 			}
             //设置定时器，自动轮播
-			timer = setInterval(run,2000);
+			timer = setInterval(run,1500);
 
             $items.mouseenter(function(){
                 clearInterval(timer);
             });
             $items.mouseleave(function(){
-                timer = setInterval(run,2000);
+                timer = setInterval(run,1500);
             });
             $tabs.mouseenter(function(){
                 var $this = $(this);
                 clearInterval(timer);//先清理定时器
-                //快速滑动切换的时候，让它缓一会儿再揍
+                //快速滑动切换的时候，让它缓一会儿再走
                 tt = setTimeout(function(){
 
                     c = $this.index();//$(this)写在定时器里，指向的是定时器，不是jq对象，所以前面要保存
@@ -47,7 +44,7 @@
             });
             $tabs.mouseleave(function(){
                 clearTimeout(tt);
-                timer = setInterval(run,2000);
+                timer = setInterval(run,1500);
             });
 
 
@@ -57,20 +54,20 @@
 <body>
 	<div id="fk">
 		<ul class="slider">
-			<li class="cur"><a href=""><img src="http://i3.vanclimg.com/cms/20170322/0322-535vt.jpg" alt=""></a></li>
-			<li><a href=""><img src="http://i5.vanclimg.com/cms/20170321/vty-535.jpg" alt=""></a></li>
-			<li><a href=""><img src="http://i2.vanclimg.com/cms/20170314/dh.jpg" alt=""></a></li>
-			<li><a href=""><img src="http://i5.vanclimg.com/cms/20170322/535-0323.jpg" alt=""></a></li>
-			<li><a href=""><img src="http://i4.vanclimg.com/cms/20170222/fbxsj.jpg" alt=""></a></li>
+			<li class="cur"><a href="javascript:void(0)"><img src="http://i3.vanclimg.com/cms/20170322/0322-535vt.jpg" alt=""></a></li>
+			<li><a href="javascript:void(0)"><img src="http://i5.vanclimg.com/cms/20170321/vty-535.jpg" alt=""></a></li>
+			<li><a href="javascript:void(0)"><img src="http://i2.vanclimg.com/cms/20170314/dh.jpg" alt=""></a></li>
+			<li><a href="javascript:void(0)"><img src="http://i5.vanclimg.com/cms/20170322/535-0323.jpg" alt=""></a></li>
+			<li><a href="javascript:void(0)"><img src="http://i4.vanclimg.com/cms/20170222/fbxsj.jpg" alt=""></a></li>
 		</ul>
 		<a href="" class="prev"></a>
 		<a href="" class="next"></a>
 		<ul class="tabs">
-			<li class="cur"><a href=""></a></li>
-			<li><a href=""></a></li>
-			<li><a href=""></a></li>
-			<li><a href=""></a></li>
-			<li><a href=""></a></li>
+			<li class="cur"><a href="javascript:void(0)"></a></li>
+			<li><a href="javascript:void(0)"></a></li>
+			<li><a href="javascript:void(0)"></a></li>
+			<li><a href="javascript:void(0)"></a></li>
+			<li><a href="javascript:void(0)"></a></li>
 		</ul>
 	</div>
 	<div class="main">主体内容</div>

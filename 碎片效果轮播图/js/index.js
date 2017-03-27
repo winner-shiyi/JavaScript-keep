@@ -1,6 +1,7 @@
 var circles=document.querySelectorAll(".picFoot p span");
 var slide=document.querySelector(".slide");
-var imgWidth=parseInt(getComputedStyle(slide.querySelector('span')).width);		//这里不能用offsetWidth去取宽度，因为一上来span标签是display:none的，所以取不到
+var imgWidth=parseInt(getComputedStyle(slide.querySelector('span')).width);		
+//这里不能用offsetWidth去取宽度，因为一上来span标签是display:none的，所以取不到
 var imgWrap=slide.children[0];
 var timer;
 
