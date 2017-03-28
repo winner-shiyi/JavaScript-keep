@@ -7,7 +7,13 @@
 	<script src="../jquery-3.2.0.min.js"></script>
 	<script>
 		$(function(){
-
+			var c = 0;
+			$('#tab li').click(function(){
+				c = $(this).index();
+				var left = c*952;
+				$('.mbb').stop().animate({'left':-left+'px'},300);
+				$(this).addClass('cur').siblings().removeClass('cur');
+			})
 
 		})
 	</script>
@@ -21,7 +27,7 @@
 			<li><img src="4.jpg" alt=""></li>
 			<li><img src="5.jpg" alt=""></li>
 		</ul>
-		<ul class="tab">
+		<ul class="tab" id="tab">
 			<li>个性萌包</li>
 			<li>双肩出行</li>
 			<li>法式风情</li>

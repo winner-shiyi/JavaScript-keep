@@ -41,3 +41,6 @@ li{list-style-type:none;}
 	color:#b32d89;
 	text-decoration: underline;
 }
+.tab li.cur{
+	background:rgba(0,0,0,.7);
+}
