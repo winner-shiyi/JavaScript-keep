@@ -23,7 +23,7 @@
 
 
 			//自动轮播
-			timer1 = setInterval(run,1000);
+			timer1 = setInterval(run,2000);
 
 			//运动函数
 			function run(){
@@ -35,7 +35,7 @@
 				flag = 1;
 				var left = c*952;
 				$('.mbb').stop().animate({'left':-left+'px'},400,function(){
-					flag = 2;
+					flag = 2;//这个运动完，才可以执行点击的 运动
 				});
 				if(c==5){
 					$('#tab li').eq(0).addClass('cur').siblings().removeClass('cur');
@@ -61,8 +61,8 @@
 				$(this).addClass('cur').siblings().removeClass('cur');
 
 				timer2 = setTimeout(function(){
-					timer1 = setInterval(run,1000);
-				},500);
+					timer1 = setInterval(run,2000);
+				},500);//这里的500ms时间一定要大于前面4行代码中left运动的400ms
 			})
 
 		})
