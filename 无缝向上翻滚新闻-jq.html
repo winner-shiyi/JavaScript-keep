@@ -32,7 +32,7 @@
 		$(function(){
 			var c = 0;
 			//使用障眼法，复制第一个li
-			var $li = $('#hd ul li').eq(0).clone().appendTo('#hd ul');
+			$('#hd ul li').eq(0).clone().appendTo('#hd ul');
 			//设置定时器，让ul每隔1秒向上的top
 			setInterval(function(){
 				c++;

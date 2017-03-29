@@ -8,11 +8,61 @@
 	<script>
 		$(function(){
 			var c = 0;
+			var timer1 = null;
+			var timer2 = null;
+			var flag = 2;//等于1表示不可以执行点击，2表示可以执行点击
+			var w = $('.mbb li').eq(0).width();
+			$('.mbb li').eq(0).clone().appendTo('.mbb');
+			var num = $('.mbb li').length;
+			$('.mbb').css({'width':w*num+'px'});
+
+			//在点击的时候 停止 自动轮播的 定时器
+			//在自动轮播运动没未完成的时候，禁止点击 又让其运动
+			//当c=5的时候 下面的点击li的要变成eq(0)
+			//当c=6的时候，表示运动完复制的第一个li，1号图片，让ul的left=0;障眼法并且让c=1
+
+
+			//自动轮播
+			timer1 = setInterval(run,1000);
+
+			//运动函数
+			function run(){
+				c++;
+				if(c==6){
+					$('.mbb').css({'left':0});
+					c = 1;
+				}
+				flag = 1;
+				var left = c*952;
+				$('.mbb').stop().animate({'left':-left+'px'},400,function(){
+					flag = 2;
+				});
+				if(c==5){
+					$('#tab li').eq(0).addClass('cur').siblings().removeClass('cur');
+				}else{
+					$('#tab li').eq(c).addClass('cur').siblings().removeClass('cur');
+				}
+			}
+
+			//点击切换轮播
 			$('#tab li').click(function(){
+				
+				if(flag == 1){//不能点击
+					return;
+				}
+				//防止快速点击 li的时候，多次开启自动轮播队列
+				clearTimeout(timer2);
+				//清除一进来的  自动轮播
+				clearInterval(timer1);
+
 				c = $(this).index();
 				var left = c*952;
-				$('.mbb').stop().animate({'left':-left+'px'},300);
+				$('.mbb').stop().animate({'left':-left+'px'},400);
 				$(this).addClass('cur').siblings().removeClass('cur');
+
+				timer2 = setTimeout(function(){
+					timer1 = setInterval(run,1000);
+				},500);
 			})
 
 		})
@@ -28,7 +78,7 @@
 			<li><img src="5.jpg" alt=""></li>
 		</ul>
 		<ul class="tab" id="tab">
-			<li>个性萌包</li>
+			<li class="cur">个性萌包</li>
 			<li>双肩出行</li>
 			<li>法式风情</li>
 			<li>春卷包</li>
